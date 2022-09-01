@@ -1,0 +1,17 @@
+name: local-test
+on:
+  workflow_dispatch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name : Setup s5cmd
+        uses: ./
+
+      - name: Print help
+        run: |
+          s5cmd --help
