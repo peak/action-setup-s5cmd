@@ -4,7 +4,7 @@ Action to install [`s5cmd`](https://github.com/peak/s5cmd) to use with GitHub Ac
 
 ## Usage
 
-```
+```yml
 name: Sync assets to S3
 on:
   push:
