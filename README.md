@@ -35,7 +35,7 @@ jobs:
 
 ### Inputs
 
-| Input   | type     | required | default   | description                        |
-| ------- | ---      | -------- | -------   | -----------                        |
-| version | `string` | `false`  | `v2.0.02` | Relase tag to download the binary. |
+| Input   | type     | required | default  | description                       |
+| ------- | ---      | -------- | -------  | -----------                       |
+| version | `string` | `false`  | `v2.0.0` | Relase tag of binary to download. |
 
