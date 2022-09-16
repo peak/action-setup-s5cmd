@@ -1,4 +1,4 @@
-# setup-s5cmd
+# action-setup-s5cmd
 
 Action to install [`s5cmd`](https://github.com/peak/s5cmd) to use with GitHub Actions.
 
