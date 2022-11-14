@@ -116,7 +116,7 @@ runs:
         ls -l "${binary_dir}"
         echo "::endgroup::"
 
-        echo "::set-output name=binary_dir::${binary_dir}"
+        echo "binary_dir=${binary_dir}" >> "$GITHUB_OUTPUT"
 
     - name: Add s5cmd to path
       shell: bash
