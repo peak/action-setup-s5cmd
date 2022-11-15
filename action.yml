@@ -84,9 +84,9 @@ runs:
           exit 1
         fi
 
-        echo "::set-output name=url::${asset_url}"
+        echo "url=${asset_url}" >> "$GITHUB_OUTPUT"
 
-    - name: Dowload release asset
+    - name: Download release asset
       id: download_release
       if: steps.find_release_asset.outputs.url != ''
       shell: bash
@@ -123,7 +123,3 @@ runs:
       run: |
         s5cmd_binary_dir="${{ steps.download_release.outputs.binary_dir  }}"
         echo "${s5cmd_binary_dir}" >> $GITHUB_PATH
-
-
-
-
