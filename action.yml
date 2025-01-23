@@ -44,6 +44,10 @@ runs:
         macOS)
             os="macOS"
             ;;
+        Windows)
+            os="Windows"
+            extension=".zip"
+            ;;
         *)
             echo "Unknown OS: ${os}"
             exit 1
@@ -85,6 +89,7 @@ runs:
         fi
 
         echo "url=${asset_url}" >> "$GITHUB_OUTPUT"
+        echo "extension=${extension}" >> "$GITHUB_OUTPUT"
 
     - name: Download release asset
       id: download_release
@@ -102,7 +107,7 @@ runs:
         mkdir -p "$download_dir"
         mkdir -p "$binary_dir"
 
-        archive_path="${download_dir}/s5cmd.tar.gz"
+        archive_path="${download_dir}/s5cmd${{ steps.find_release_asset.outputs.extension }}"
 
         curl -sL -o "${archive_path}" "${asset_url}"
 
@@ -110,7 +115,11 @@ runs:
         file "${archive_path}"
         echo "::endgroup::"
 
-        tar -xf "${archive_path}" -C "${binary_dir}" s5cmd
+        if [ "${{ runner.os }}" = "Windows" ]; then
+          7z x "${archive_path}" -o"${binary_dir}" s5cmd.exe
+        else
+          tar -xf "${archive_path}" -C "${binary_dir}" s5cmd
+        fi
 
         echo "::group::Binary path"
         ls -l "${binary_dir}"
