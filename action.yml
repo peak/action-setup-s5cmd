@@ -107,7 +107,7 @@ runs:
         curl -sL -o "${archive_path}" "${asset_url}"
 
         echo "::group::Download archive"
-        file "${archive_path}"
+        ls -l "${archive_path}"
         echo "::endgroup::"
 
         tar -xf "${archive_path}" -C "${binary_dir}" s5cmd
